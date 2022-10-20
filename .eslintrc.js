@@ -1,3 +1,5 @@
+/*eslint @typescript-eslint/no-var-requires: "off"*/
+
 module.exports = {
   root: true,
   env: {
@@ -13,6 +15,8 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      "@typescript-eslint/no-var-requires": 0
+    
   }
 }
