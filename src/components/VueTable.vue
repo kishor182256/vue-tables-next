@@ -18,7 +18,6 @@
         }" :search-options="{
              enabled: true, 
              externalQuery: searchTerm,
-             searchFn:filteredList
         }"
         
          styleClass="vgt-table bordered">
@@ -28,7 +27,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import 'vue-good-table-next/dist/vue-good-table-next.css';
 
 export default {
@@ -43,10 +42,10 @@ export default {
     
     props: {
         rows: {
-            type: String
+            type: Object
         },
         columns: {
-            type: String
+            type: Object
         }
     },
     components: {
@@ -54,13 +53,13 @@ export default {
     },
 
     methods: {
-        customSearch(event) {
-          console.log('----->',event.target.value)
-      clearTimeout(this.debounce)
-      this.debounce = setTimeout(() => {  
-        this.searchTerm = event.target.value
-      }, 600)
-    }
+        customSearch(event: any) {
+            console.log('----->', event.target.value)
+            clearTimeout(this.debounce)
+            this.debounce = setTimeout(() => {
+                this.searchTerm = event.target.value
+            }, 600)
+        }
   
   }
 
