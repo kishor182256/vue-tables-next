@@ -58,7 +58,7 @@ export default {
             clearTimeout(this.debounce)
             this.debounce = setTimeout(() => {
                 this.searchTerm = event.target.value
-            }, 600)
+            }, 500)
         }
   
   }
