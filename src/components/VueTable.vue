@@ -36,7 +36,7 @@ export default {
     data(){
         return{
             searchTerm:'',
-            debounce: 0
+            timeout: 0
         }
     },
     
@@ -55,8 +55,8 @@ export default {
     methods: {
         customSearch(event:any) {
             console.log('----->', event.target.value)
-            clearTimeout(this.debounce)
-            this.debounce = setTimeout(() => {
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(() => {
                 this.searchTerm = event.target.value
             }, 500)
         }
