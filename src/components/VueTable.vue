@@ -1,5 +1,6 @@
 <template>
     <div>
+        <input type="text" @input="customSearch">
         <vue-good-table :columns="columns" :rows="rows" theme="polar-bear" :pagination-options="{
           enabled: true,
           mode: 'records',
@@ -15,11 +16,13 @@
           pageLabel: 'page', 
           allLabel: 'All',
         }" :search-options="{
-             enabled: true,
-             position: 'middle',    
+             enabled: true, 
+             externalQuery: searchTerm,
+             searchFn:filteredList
         }"
         
          styleClass="vgt-table bordered">
+         
         </vue-good-table>
 
     </div>
@@ -30,6 +33,14 @@ import 'vue-good-table-next/dist/vue-good-table-next.css';
 
 export default {
     name: "VueTable",
+
+    data(){
+        return{
+            searchTerm:'',
+            debounce: null
+        }
+    },
+    
     props: {
         rows: {
             type: String
@@ -42,10 +53,22 @@ export default {
         'vue-good-table': require('vue-good-table-next').VueGoodTable
     },
 
+    methods: {
+        customSearch(event) {
+          console.log('----->',event.target.value)
+      clearTimeout(this.debounce)
+      this.debounce = setTimeout(() => {  
+        this.searchTerm = event.target.value
+      }, 600)
+    }
+  
+  }
+
+
+   
+    
+  
 
 }
 </script>
 
-<style>
-
-</style>

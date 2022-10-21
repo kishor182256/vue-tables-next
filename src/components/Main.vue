@@ -45,9 +45,11 @@ export default defineComponent({
        
         data:{},
         columns: [
+       
         {
           label: 'Id',
           field: 'id',
+          type:'number'
         },
         {
           label: 'Title',
@@ -58,8 +60,9 @@ export default defineComponent({
           label: 'Body',
           field: 'body',
           type: 'string',
-        }
-        
+       
+      },
+      
       ],
       rows: [
         { id:'', title:"",body: '' },
