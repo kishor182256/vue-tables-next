@@ -53,8 +53,8 @@ export default {
     },
 
     methods: {
-        customSearch(event:any) {
-            console.log('----->', event.target.value)
+        customSearch(event: { target: HTMLInputElement }) {
+            console.log('Input----->', event.target.value)
             clearTimeout(this.timeout)
             this.timeout = setTimeout(() => {
                 this.searchTerm = event.target.value
