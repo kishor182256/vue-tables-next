@@ -1,9 +1,12 @@
 <template>
     <div>
         <input type="text" @input="customSearch">
-        <vue-good-table :columns="columns" :rows="rows" theme="polar-bear" :pagination-options="{
+        <vue-good-table :columns="columns" :rows="rows" theme="polar-bear"
+           :pagination-options="{
           enabled: true,
           mode: 'records',
+          selectAllByGroup: true,
+          selectOnCheckboxOnly: true,
           perPage: 5,
           position: 'bottom',
           perPageDropdown: [5,10],
@@ -19,7 +22,12 @@
              enabled: true, 
              externalQuery: searchTerm,
         }"
-        
+        :select-options="{
+            enabled: true,
+            selectOnCheckboxOnly: true,
+            selectionInfoClass: 'custom-class'
+        }"
+        v-on:selected-rows-change="selectionChanged"
          styleClass="vgt-table bordered">
          
         </vue-good-table>
@@ -36,16 +44,17 @@ export default {
     data(){
         return{
             searchTerm:'',
-            timeout: 0
+            timeout: 0,
+            mediaPlanData: []
         }
     },
     
     props: {
         rows: {
-            type: Object
+            type: Array
         },
         columns: {
-            type: Object
+            type: Array
         }
     },
     components: {
@@ -53,20 +62,22 @@ export default {
     },
 
     methods: {
-        customSearch(event: { target: HTMLInputElement }) {
-            console.log('Input----->', event.target.value)
+        customSearch(event:Event): void
+ {
             clearTimeout(this.timeout)
             this.timeout = setTimeout(() => {
-                this.searchTerm = event.target.value
+                this.searchTerm =  (event.target as HTMLInputElement).value;
             }, 500)
+        },
+
+        selectionChanged(params:Record<string,any>): void{
+          params.selectedRows.forEach((element:Record<string,any>) => 
+                    console.log('selected Rows---->',JSON.parse(JSON.stringify(element.body))
+          ))
         }
   
   }
 
-
-   
-    
-  
 
 }
 </script>
