@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.post('/posts',(req,res)=>{
     console.log(req.body.body[0])
-    console.log("/post nitin has been called 3");
+    console.log("/post kishor has been called 3");
     db.push(req.body.body[0])
     console.log(db)
 })
