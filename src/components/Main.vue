@@ -60,21 +60,20 @@ export default defineComponent({
           label: 'Body',
           field: 'body',
           type: 'string',
-       
       },
       
       ],
       rows: [
-        { id:'', title:"",body: '' },
-        { id:'', title:"",body: ' ' },
-        { id:'', title:"",body: '' }  
+        { id:'', title:"",body: '', },
+        { id:'', title:"",body: ' ',  },
+        { id:'', title:"",body: '', }  
       ],
       }
     },
     mounted() {
       axios.get('https://jsonplaceholder.typicode.com/posts')
       .then((response) => {
-           console.log('Data----->',JSON.parse(JSON.stringify(response.data)));   
+          //  console.log('Data----->',JSON.parse(JSON.stringify(response.data)));   
            this.rows = response.data;
       }).catch((error) =>{
          console.log(error);  

@@ -38,11 +38,11 @@
 </template>
 
 <script lang="ts">
-var fs = require('fs');
+
 import axios from "axios";
 
 
-const file = './data.json'
+
 export default {
     name: "VueTable",
 
@@ -52,7 +52,9 @@ export default {
             timeout: 0,
             arr: [],
             title:'',
-            body:''
+            body:'',
+            response:null,
+            id:''
             
         }
     },
@@ -96,35 +98,38 @@ export default {
         
         // },
 
-        async selectionChanged(params:Record<string,any>): Promise<void>{
+        async selectionChanged(params:Record<string,number>): Promise<void>{
+            console.log('Selection', JSON.parse(JSON.stringify(params)))
             try{
-                const res =await axios.post(`http://localhost:3000/posts`,{
-                    
-                      header: { 'Content-Type': 'application/json' },
-                      body:params.selectedRows
+                 if(this.id) return
+                    const res = await axios.post(`http://localhost:3000/posts`,{ 
+                         body:params.selectedRows,
                      })
-                     console.log("response :",res.data.body.map((data:any)=>{
-                             this.body=data.body,
-                             this.title=data.title,
-                             console.log('this.body',this.body, 'this.title', this.title);         
-                     }));
+                     res.data.body.map((response:Record<string,any>)=>{response.id==this.id})
+              
+                       
                      
+
                     
-                    // console.log('response api data',JSON.parse(JSON.stringify(params.selectedRows)));
-                     
+                    //  res.map((record:Record<string,number>)=>{
+                      
+                    //  console.log('response api data',JSON.parse(JSON.stringify(params.selectedRows)));
+                  
             }catch(err) {
                 console.log('Selection error-->catch error:',err)
             }
-        }
+            
+        },
+
+
   
+  },
+
+  mounted(){
+    // console.log('mounted response',this.response)
   }
 
 
 }
 </script>
 
-<style scoped>
-  .bgcolor{
-    background-color: brown;
-  }
-</style>
