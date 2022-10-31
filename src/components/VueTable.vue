@@ -1,3 +1,4 @@
+<!-- json-server data.json to start json server -->
 <template>
     <div>
         <input type="text" @input="customSearch">
@@ -18,6 +19,7 @@
           ofLabel: 'of',
           pageLabel: 'page', 
           allLabel: 'All',
+          
         }" :search-options="{
              enabled: true, 
              externalQuery: searchTerm,
@@ -25,19 +27,22 @@
         :select-options="{
             enabled: true,
             selectOnCheckboxOnly: true,
-            selectionInfoClass: 'custom-class'
+            selectionInfoClass: 'bgcolor',            
         }"
         v-on:selected-rows-change="selectionChanged"
+        
          styleClass="vgt-table bordered">
-         
         </vue-good-table>
 
     </div>
 </template>
 
 <script lang="ts">
-import 'vue-good-table-next/dist/vue-good-table-next.css';
+var fs = require('fs');
+import axios from "axios";
 
+
+const file = './data.json'
 export default {
     name: "VueTable",
 
@@ -45,16 +50,19 @@ export default {
         return{
             searchTerm:'',
             timeout: 0,
-            mediaPlanData: []
+            arr: [],
+            title:'',
+            body:''
+            
         }
     },
     
     props: {
         rows: {
-            type: Array
+            type: Object
         },
         columns: {
-            type: Array
+            type: Object
         }
     },
     components: {
@@ -70,10 +78,43 @@ export default {
             }, 500)
         },
 
-        selectionChanged(params:Record<string,any>): void{
-          params.selectedRows.forEach((element:Record<string,any>) => 
-                    console.log('selected Rows---->',JSON.parse(JSON.stringify(element.body))
-          ))
+        // async selectionChanged(params:Record<string,any>): Promise<void>{
+        //    try{
+           
+        //      params.selectedRows.forEach((element:Record<string,never>) =>   
+        //             console.log('selected Rows-->-->',JSON.parse(JSON.stringify(element.body)),
+                    
+        //             await axios.post(`http://localhost:3000/posts`,{
+        //                 body:element.body
+        //              }),
+        //              console.log('--->',JSON.parse(JSON.stringify(element.body))),  
+        //   ))
+
+        //    }catch(err){
+        //     console.error('File write error-->catch error: ' + err)
+        //    }
+        
+        // },
+
+        async selectionChanged(params:Record<string,any>): Promise<void>{
+            try{
+                const res =await axios.post(`http://localhost:3000/posts`,{
+                    
+                      header: { 'Content-Type': 'application/json' },
+                      body:params.selectedRows
+                     })
+                     console.log("response :",res.data.body.map((data:any)=>{
+                             this.body=data.body,
+                             this.title=data.title,
+                             console.log('this.body',this.body, 'this.title', this.title);         
+                     }));
+                     
+                    
+                    // console.log('response api data',JSON.parse(JSON.stringify(params.selectedRows)));
+                     
+            }catch(err) {
+                console.log('Selection error-->catch error:',err)
+            }
         }
   
   }
@@ -82,3 +123,8 @@ export default {
 }
 </script>
 
+<style scoped>
+  .bgcolor{
+    background-color: brown;
+  }
+</style>

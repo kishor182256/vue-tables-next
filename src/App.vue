@@ -6,7 +6,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Main from './components/Main.vue';
-import 'vue-good-table/dist/vue-good-table.css';
+import 'vue-good-table-next/dist/vue-good-table-next.css';
+
 
 
 export default defineComponent({
