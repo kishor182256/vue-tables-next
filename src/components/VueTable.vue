@@ -103,9 +103,9 @@ export default {
             try{
                  if(this.id) return
                     const res = await axios.post(`http://localhost:3000/posts`,{ 
-                         body:params.selectedRows,
+                         body:params.body,
                      })
-                     res.data.body.map((response:Record<string,any>)=>{response.id==this.id})
+                   console.log( res.data.body.map((response:Record<string,any>)=>{console.log(response.body)}))
               
                        
                      

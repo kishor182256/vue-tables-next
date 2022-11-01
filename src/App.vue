@@ -14,7 +14,7 @@ export default defineComponent({
   name: 'App',
   components: {
     Main
-,  }
+  }
 });
 </script>
 
