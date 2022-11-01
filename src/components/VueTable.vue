@@ -98,12 +98,13 @@ export default {
         
         // },
 
-        async selectionChanged(params:Record<string,number>): Promise<void>{
+        async selectionChanged(params:Record<string,any>): Promise<void>{
             console.log('Selection', JSON.parse(JSON.stringify(params)))
             try{
                  if(this.id) return
                     const res = await axios.post(`http://localhost:3000/posts`,{ 
-                         body:params.body,
+                         body:params.selectedRows.map((response:any) =>response.body),
+                         title:params.selectedRows.map((response:any) =>response.title)
                      })
                    console.log( res.data.body.map((response:Record<string,any>)=>{console.log(response.body)}))
               

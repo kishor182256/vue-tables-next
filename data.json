@@ -2,36 +2,23 @@
   "posts": [
     {
       "body": [
-        {
-          "userId": 2,
-          "id": 20,
-          "title": "doloribus ad provident suscipit at",
-          "body": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo",
-          "vgt_id": 0,
-          "originalIndex": 19,
-          "vgtSelected": true
-        }
+        "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae"
+      ],
+      "title": [
+        "dolorem eum magni eos aperiam quia"
       ],
       "id": 1
     },
     {
-      "body": "",
+      "body": [
+        "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae",
+        "quo et expedita modi cum officia vel magni\ndoloribus qui repudiandae\nvero nisi sit\nquos veniam quod sed accusamus veritatis error"
+      ],
+      "title": [
+        "dolorem eum magni eos aperiam quia",
+        "optio molestias id quia eum"
+      ],
       "id": 2
-    },
-    {
-      "body": "",
-      "id": 3
-    },
-    {
-      "body": "",
-      "id": 4
-    },
-    {
-      "body": "",
-      "id": 5
-    },
-    {
-      "id": 6
     }
   ]
 }
